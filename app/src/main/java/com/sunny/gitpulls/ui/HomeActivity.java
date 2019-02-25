@@ -1,7 +1,9 @@
-package com.sunny.gitpulls;
+package com.sunny.gitpulls.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.sunny.gitpulls.R;
 
 public class HomeActivity extends AppCompatActivity {
 

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Git Pulls</string>
+    <string name="enter_home_header">Enter public repo info</string>
+    <string name="enter_owner">Enter Owner name</string>
+    <string name="enter_repo">Enter Repository name under the owner</string>
+    <string name="get_pulls">Fetch Pull Requests >></string>
 </resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="width_input">400dp</dimen>
+    <dimen name="height_input">30dp</dimen>
+    <dimen name="margins_for_elements">10dp</dimen>
+</resources>

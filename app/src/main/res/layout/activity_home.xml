@@ -1,18 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sunny.gitpulls.HomeActivity">
+    tools:context="com.sunny.gitpulls.ui.HomeActivity">
 
     <TextView
+        android:id="@+id/message_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/enter_home_header"
+        android:layout_margin="@dimen/margins_for_elements"/>
+    <EditText
+        android:id="@+id/owner_name"
+        android:layout_width="@dimen/width_input"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/message_tv"
+        android:hint=""
+        android:layout_margin="@dimen/margins_for_elements"/>
+    <EditText
+        android:id="@+id/repo_name"
+        android:layout_width="@dimen/width_input"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/owner_name"
+        android:layout_margin="@dimen/margins_for_elements"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fetch_repos"
+        android:layout_below="@id/repo_name"
+        android:layout_margin="@dimen/margins_for_elements"
+        android:text="@string/get_pulls"/>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
