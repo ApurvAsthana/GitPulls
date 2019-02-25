@@ -18,7 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.prlists.PullReqsListActivity"></activity>
+        <activity android:name=".ui.prlists.PullReqsListActivity" />
+        <activity android:name=".ui.splitview.SplitViewActivity"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

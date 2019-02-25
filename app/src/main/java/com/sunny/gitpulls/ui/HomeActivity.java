@@ -66,7 +66,6 @@ public class HomeActivity extends AppCompatActivity implements OnHttpConnListene
                 fetchButton.setVisibility(View.VISIBLE);
                 Intent launchListActivity = new Intent();
                 launchListActivity.setClass(activity, PullReqsListActivity.class);
-                launchListActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(launchListActivity);
             }
         });

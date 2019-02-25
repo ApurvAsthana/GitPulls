@@ -4,4 +4,8 @@
     <string name="enter_owner">Enter Owner name</string>
     <string name="enter_repo">Enter Repository name under the owner</string>
     <string name="get_pulls">Fetch Pull Requests >></string>
+
+    <string name="title_activity_split_view">SplitViewActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

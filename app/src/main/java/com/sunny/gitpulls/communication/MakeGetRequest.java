@@ -30,7 +30,7 @@ public class MakeGetRequest extends AsyncTask{
         String result = null;
         try {
             Log.d("TAG","making get request");
-            URL url = new URL(EndpointDetails.getRequestEndpoint());
+            URL url = new URL(request);
             conn = (HttpURLConnection)url.openConnection();
             conn.setReadTimeout(CONN_TIMEOUT);
             conn.setConnectTimeout(CONN_TIMEOUT);
