@@ -1,5 +1,6 @@
 package com.sunny.gitpulls.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.sunny.gitpulls.R;
 import com.sunny.gitpulls.communication.MakeGetRequest;
 import com.sunny.gitpulls.communication.OnHttpConnListener;
+import com.sunny.gitpulls.ui.prlists.PullReqsListActivity;
 import com.sunny.gitpulls.utils.EndpointDetails;
 
 import java.net.HttpURLConnection;
@@ -23,6 +25,8 @@ public class HomeActivity extends AppCompatActivity implements OnHttpConnListene
     EditText ownerName,repoName;
     HomeActivity activity;
     ProgressBar progressBar;
+
+    public static String responseFromApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,10 @@ public class HomeActivity extends AppCompatActivity implements OnHttpConnListene
             public void run() {
                 progressBar.setVisibility(View.INVISIBLE);
                 fetchButton.setVisibility(View.VISIBLE);
+                Intent launchListActivity = new Intent();
+                launchListActivity.setClass(activity, PullReqsListActivity.class);
+                launchListActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(launchListActivity);
             }
         });
         if(mesCode!= HttpURLConnection.HTTP_OK) {
@@ -67,6 +75,7 @@ public class HomeActivity extends AppCompatActivity implements OnHttpConnListene
         }else{
             Log.d(TAG,"Response received----------");
             Log.d(TAG,"Result is : "+msg);
+            responseFromApi = msg;
         }
     }
 }
