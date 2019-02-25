@@ -8,4 +8,20 @@ public class EndpointDetails {
     public static String getRequestEndpoint(){
         return apiRoot+owner+"/"+repo+"/"+"pulls";
     }
+
+    public static String getOwner() {
+        return owner;
+    }
+
+    public static void setOwner(String owner) {
+        EndpointDetails.owner = owner;
+    }
+
+    public static String getRepo() {
+        return repo;
+    }
+
+    public static void setRepo(String repo) {
+        EndpointDetails.repo = repo;
+    }
 }
