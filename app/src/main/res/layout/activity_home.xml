@@ -34,5 +34,12 @@
         android:layout_below="@id/repo_name"
         android:layout_margin="@dimen/margins_for_elements"
         android:text="@string/get_pulls"/>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loading_blocker"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/repo_name"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sunny.gitpulls.R;
@@ -21,6 +22,7 @@ public class HomeActivity extends AppCompatActivity implements OnHttpConnListene
     Button fetchButton;
     EditText ownerName,repoName;
     HomeActivity activity;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class HomeActivity extends AppCompatActivity implements OnHttpConnListene
         fetchButton = (Button) findViewById(R.id.fetch_repos);
         ownerName = (EditText) findViewById(R.id.owner_name);
         repoName = (EditText) findViewById(R.id.repo_name);
+        progressBar = (ProgressBar) findViewById(R.id.loading_blocker);
         fetchButton.setOnClickListener(fetchListener);
     }
 
@@ -44,12 +47,21 @@ public class HomeActivity extends AppCompatActivity implements OnHttpConnListene
                 EndpointDetails.setOwner(owner);
                 EndpointDetails.setRepo(repo);
             }
+            fetchButton.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
             new MakeGetRequest(EndpointDetails.getRequestEndpoint(),activity).execute();
         }
     };
 
     @Override
     public void onUpdate(String msg, int mesCode) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.INVISIBLE);
+                fetchButton.setVisibility(View.VISIBLE);
+            }
+        });
         if(mesCode!= HttpURLConnection.HTTP_OK) {
             Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
         }else{
