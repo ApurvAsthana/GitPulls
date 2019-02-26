@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Git Pulls</string>
-    <string name="enter_home_header">Enter public repo info</string>
+    <string name="enter_home_header">Enter public repo info (Owner,Repo)</string>
     <string name="enter_owner">Enter Owner name</string>
     <string name="enter_repo">Enter Repository name under the owner</string>
     <string name="get_pulls">Fetch Pull Requests >></string>
+    <string name="edittext_owner_hint">facebook</string>
+    <string name="edittext_repo_hint">react</string>
 
     <string name="title_activity_split_view">SplitViewActivity</string>
     <string name="dummy_button">Dummy Button</string>

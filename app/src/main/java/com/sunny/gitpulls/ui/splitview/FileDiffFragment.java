@@ -1,4 +1,4 @@
-package com.sunny.gitpulls.ui.prlists;
+package com.sunny.gitpulls.ui.splitview;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,48 +6,37 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.sunny.gitpulls.R;
-import com.sunny.gitpulls.ui.prlists.PullRequestListItem;
+import com.sunny.gitpulls.ui.prlists.PullReqsListActivity;
+import com.sunny.gitpulls.utils.FileDiffParseHelper;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
-public class PullRequestItemFragment extends Fragment {
+public class FileDiffFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    private static final String ARG_JSON_ARRAY_STRING = "json-array";
     // TODO: Customize parameters
-    private int mColumnCount = 1;
-    private String jsonArrayString="";
+    private int mColumnCount = 2;
     private OnListFragmentInteractionListener mListener;
+    private static final String TAG="FileDiffFragment";
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public PullRequestItemFragment() {
+    public FileDiffFragment() {
     }
 
-    public static PullRequestItemFragment newInstance(int columnCount,String jsonArrayString) {
-        PullRequestItemFragment fragment = new PullRequestItemFragment();
+    // TODO: Customize parameter initialization
+    @SuppressWarnings("unused")
+    public static FileDiffFragment newInstance(int columnCount) {
+        FileDiffFragment fragment = new FileDiffFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
-        args.putString(ARG_JSON_ARRAY_STRING,jsonArrayString);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,26 +47,13 @@ public class PullRequestItemFragment extends Fragment {
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-            jsonArrayString = getArguments().getString(ARG_JSON_ARRAY_STRING);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pullrequestitem_list, container, false);
-        ArrayList<PullRequestListItem> items = new ArrayList<>();
-        JSONArray jsonArray = null;
-        try {
-            jsonArray = new JSONArray(jsonArrayString);
-            for (int i=0;i<jsonArray.length();i++){
-                JSONObject object = jsonArray.getJSONObject(i);
-                items.add(new PullRequestListItem(object.getInt("id"),object.getString("title"),object.getString("url"),object.getInt("number")));
-            }
-        } catch (JSONException e) {
-            Toast.makeText(getContext(),"Error while parsing json",Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
+        View view = inflater.inflate(R.layout.fragment_filediff_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -88,11 +64,18 @@ public class PullRequestItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyPullRequestItemRecyclerViewAdapter(items, mListener));
+            FileDiffParseHelper helper = new FileDiffParseHelper();
+            ArrayList<FilesDiffItem> items = new ArrayList<>();
+            try {
+                items = helper.getFileDiffListFromJson(PullReqsListActivity.responseFromGetApi);
+            } catch (JSONException e) {
+                Log.d(TAG,"Error while parsing json");
+                e.printStackTrace();
+            }
+            recyclerView.setAdapter(new MyFileDiffRecyclerViewAdapter(items, mListener));
         }
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -112,7 +95,6 @@ public class PullRequestItemFragment extends Fragment {
     }
 
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(PullRequestListItem item);
+        void onListFragmentInteraction(FilesDiffItem item);
     }
 }

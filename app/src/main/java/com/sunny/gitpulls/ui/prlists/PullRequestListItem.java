@@ -17,4 +17,8 @@ public class PullRequestListItem {
     public String toString() {
         return description;
     }
+
+    public String getUrl() {
+        return url;
+    }
 }
