@@ -39,12 +39,12 @@ public class MyFileDiffRecyclerViewAdapter extends RecyclerView.Adapter<MyFileDi
             int rightNum = mValues.get(position).getLineNumberFile2();
             String leftStr = mValues.get(position).getLineStringFile1();
             String rightStr = mValues.get(position).getLineStringFile2();
-            if (leftStr!=null && leftStr.charAt(0)=='-'){
-                holder.mleftStringView.setBackgroundColor(Color.rgb(255, 216, 209));
-            }
-            if(rightStr!=null && rightStr.charAt(0)=='+'){
-                holder.mRightStringView.setBackgroundColor(Color.rgb(209, 255, 216));
-            }
+//            if (leftStr!=null && leftStr.charAt(0)=='-'){
+//                holder.mleftStringView.setBackgroundColor(Color.rgb(255, 216, 209));
+//            }
+//            if(rightStr!=null && rightStr.charAt(0)=='+'){
+//                holder.mRightStringView.setBackgroundColor(Color.rgb(209, 255, 216));
+//            }
             holder.mleftNumView.setText(leftNum == -1 ? "" : leftNum + "");
             holder.mleftStringView.setText(leftStr == null ? "" : leftStr);
             holder.mRightNumView.setText(rightNum == -1 ? "" : rightNum + "");
