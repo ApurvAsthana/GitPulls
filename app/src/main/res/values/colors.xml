@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="diff_color_green">#dbffd1</color>
+    <color name="diff_color_red">#ffd1d1</color>
+    <color name="diff_color_file_header">#ceddff</color>
 </resources>
