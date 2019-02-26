@@ -40,7 +40,7 @@ public class PullReqsListActivity extends AppCompatActivity implements PullReque
 
     @Override
     public void onListFragmentInteraction(PullRequestListItem item) {
-        Toast.makeText(mActivity,item.number+" Clicked",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(mActivity,item.number+" Clicked",Toast.LENGTH_SHORT).show();
         Log.d(TAG,"List Fragment interaction PullReqsListActivity");
         new MakeGetRequest(item.getUrl()+"/files",mActivity).execute();
     }

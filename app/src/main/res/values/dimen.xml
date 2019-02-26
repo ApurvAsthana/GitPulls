@@ -4,7 +4,7 @@
     <dimen name="height_input">30dp</dimen>
     <dimen name="margins_for_elements">10dp</dimen>
     <dimen name="width_for_diff_text">250dp</dimen>
-    <dimen name="width_for_diff_num">35dp</dimen>
+    <dimen name="width_for_diff_num">45dp</dimen>
     <dimen name="margin_for_diff">5dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 </resources>
