@@ -1,12 +1,10 @@
 package com.sunny.gitpulls.ui.splitview;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sunny.gitpulls.R;
@@ -33,25 +31,24 @@ public class MyFileDiffRecyclerViewAdapter extends RecyclerView.Adapter<MyFileDi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        holder.setIsRecyclable(false);
         holder.mItem = mValues.get(position);
         if(mValues.get(position).getFileName()==null) {
             int leftNum = mValues.get(position).getLineNumberFile1();
             int rightNum = mValues.get(position).getLineNumberFile2();
             String leftStr = mValues.get(position).getLineStringFile1();
             String rightStr = mValues.get(position).getLineStringFile2();
-//            if (leftStr!=null && leftStr.charAt(0)=='-'){
-//                holder.mleftStringView.setBackgroundColor(Color.rgb(255, 216, 209));
-//            }
-//            if(rightStr!=null && rightStr.charAt(0)=='+'){
-//                holder.mRightStringView.setBackgroundColor(Color.rgb(209, 255, 216));
-//            }
+            if (leftStr!=null && leftStr.charAt(0)=='-'){
+                holder.mleftStringView.setBackgroundColor(Color.rgb(255, 216, 209));
+            }
+            if(rightStr!=null && rightStr.charAt(0)=='+'){
+                holder.mRightStringView.setBackgroundColor(Color.rgb(209, 255, 216));
+            }
             holder.mleftNumView.setText(leftNum == -1 ? "" : leftNum + "");
             holder.mleftStringView.setText(leftStr == null ? "" : leftStr);
             holder.mRightNumView.setText(rightNum == -1 ? "" : rightNum + "");
             holder.mRightStringView.setText(rightStr == null ? "" : rightStr);
         }else{
-            holder.textContainer.setVisibility(View.GONE);
-            holder.fileHeader.setVisibility(View.VISIBLE);
             holder.fileHeader.setText(mValues.get(position).getFileName()==null?"":mValues.get(position).getFileName());
         }
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +75,6 @@ public class MyFileDiffRecyclerViewAdapter extends RecyclerView.Adapter<MyFileDi
         public final TextView mRightNumView;
         public final TextView mRightStringView;
         public final TextView fileHeader;
-        public final LinearLayout textContainer;
         public FilesDiffItem mItem;
 
         public ViewHolder(View view) {
@@ -89,7 +85,6 @@ public class MyFileDiffRecyclerViewAdapter extends RecyclerView.Adapter<MyFileDi
             mRightNumView = (TextView) view.findViewById(R.id.right_num);
             mRightStringView = (TextView) view.findViewById(R.id.right_string);
             fileHeader = (TextView) view.findViewById(R.id.file_header);
-            textContainer = (LinearLayout) view.findViewById(R.id.diff_text_container);
         }
     }
 }

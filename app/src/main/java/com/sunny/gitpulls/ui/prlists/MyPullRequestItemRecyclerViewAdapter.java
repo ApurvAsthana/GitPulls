@@ -30,6 +30,7 @@ public class MyPullRequestItemRecyclerViewAdapter extends RecyclerView.Adapter<M
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        holder.setIsRecyclable(false);
         holder.mItem = mValues.get(position);
         String str = "#"+mValues.get(position).number;
         holder.mIdView.setText(str);
